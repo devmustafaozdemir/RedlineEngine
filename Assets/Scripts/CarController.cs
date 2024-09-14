@@ -121,6 +121,7 @@ public class CarController : MonoBehaviour
     {
         CurrentGear = GearNUmber;
         GearKnob.position = Gears_[CurrentGear].GearKnobPos.position;
+        SoundManager.Instance.ChangeGearSound(5f);
     }
 
     public void StartStopCar()
