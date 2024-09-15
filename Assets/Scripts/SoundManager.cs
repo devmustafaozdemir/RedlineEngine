@@ -23,16 +23,49 @@ public class SoundManager : MonoBehaviour
     [SerializeField] Vector2 Pitch;
     [SerializeField] float MaxVolume;
     [SerializeField] float VolumeLerpSpeed;
+    [SerializeField] bool AudioSetting;
 
     private void Update()
     {
-        AudioS.pitch = (((Pitch.y - Pitch.x) / CarController.Instance.MaxSpeed) * CarController.Instance.CurrentSpeed) + Pitch.x;
-        AudioS.volume = Mathf.Lerp(AudioS.volume, MaxVolume, VolumeLerpSpeed * Time.deltaTime);
+        if (AudioSetting)
+        {
+            AudioS.pitch = (((Pitch.y - Pitch.x) / CarController.Instance.MaxSpeed) * CarController.Instance.CurrentSpeed) + Pitch.x;
+            AudioS.volume = Mathf.Lerp(AudioS.volume, MaxVolume, VolumeLerpSpeed * Time.deltaTime);
+        }
     }
 
     public void ChangeGearSound(float Lerp)
     {
         AudioS.volume = 0f;
         VolumeLerpSpeed = Lerp;
+    }
+
+    public IEnumerator StartTheEngine()
+    {
+        if (CarController.Instance.IsCarStarted)
+        {
+            AudioS.loop = false;
+            AudioS.clip = EngineStartSound;
+            AudioS.Play();
+
+            yield return new WaitForSeconds(EngineStartSound.length);
+
+            AudioSetting = true;
+            AudioS.clip = GearSound;
+            AudioS.Play();
+
+            yield return new WaitForSeconds(GearSound.length);
+
+            AudioS.loop = true;
+            AudioS.clip = EngineSound;
+            AudioS.Play();
+        }
+
+        else
+        {
+            AudioS.Stop();
+            AudioSetting = false;
+            AudioS.pitch = 1f;
+        }
     }
 }

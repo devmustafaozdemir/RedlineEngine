@@ -7253,8 +7253,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 11a364acbe359eb4bbec537090933fba, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -7367,12 +7367,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioS: {fileID: 1720421115}
-  EngineStartSound: {fileID: 0}
-  EngineSound: {fileID: 0}
-  GearSound: {fileID: 0}
+  EngineStartSound: {fileID: 8300000, guid: d15a65b8c7b86c641b1ce24f5d543393, type: 3}
+  EngineSound: {fileID: 8300000, guid: 3fcf63f0f67f7be468ec12af8b10d85c, type: 3}
+  GearSound: {fileID: 8300000, guid: ce0133cca2b67034c904a96667b5a490, type: 3}
   Pitch: {x: 0.6, y: 2}
   MaxVolume: 1
   VolumeLerpSpeed: 1
+  AudioSetting: 0
 --- !u!1 &1720444214
 GameObject:
   m_ObjectHideFlags: 0
