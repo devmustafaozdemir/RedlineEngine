@@ -8,6 +8,8 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    public CameraController cameraController;
+
     [Header("Lists")]
     public List<Car> cars = new List<Car>();
 
@@ -91,6 +93,8 @@ public class UIManager : MonoBehaviour
         carNameTMP.text = cars[activeCarID].carName;       
         activeCar = cars[activeCarID].carObj;
         activeCar.gameObject.SetActive(true);
+
+        cameraController.PlayAnimation();
 
         if (activeCarID != 0)
         {          
