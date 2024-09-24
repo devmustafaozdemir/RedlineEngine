@@ -127,6 +127,8 @@ public class CarController : MonoBehaviour
     public void StartStopCar()
     {
         IsCarStarted = !IsCarStarted;
+
+        StartCoroutine(SoundManager.Instance.StartTheEngine());
     }
 }
 
