@@ -1,0 +1,17 @@
+Hello dear user
+
+There are some features in the model that should be mentioned:
+
+1.The spoiler can move up and down, everything under it has been modeled
+
+2.Rims have three textures which two of them are for the original color
+and metalness and the other one (rims-masked) is for custom colored
+rims. you can use that texture as a mask in order to have two different
+colors for the rims.
+
+3. Left turn light and right turn light are seperate so you can turn on 
+them seperately
+
+4. Doors are not attached to the body, if you want the doors and 
+the body to be a single object, select both objects and press "ctrl + j"
+in blender.

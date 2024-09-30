@@ -40,6 +40,9 @@ MonoBehaviour:
   thicknessModifier:
     overrideState: 1
     value: 1.01
+  zBias:
+    overrideState: 0
+    value: 0.0001
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -73,7 +76,7 @@ MonoBehaviour:
     value: 1.16
   softKnee:
     overrideState: 1
-    value: 0.55
+    value: 0.547
   clamp:
     overrideState: 0
     value: 65472
@@ -117,7 +120,7 @@ MonoBehaviour:
     value: 25.22
   aperture:
     overrideState: 1
-    value: 0.9
+    value: 1.2
   focalLength:
     overrideState: 1
     value: 12

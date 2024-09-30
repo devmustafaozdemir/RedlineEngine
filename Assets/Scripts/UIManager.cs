@@ -4,17 +4,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    public CameraController cameraController;
+
     [Header("Lists")]
     public List<Car> cars = new List<Car>();
 
     [Header("Objects")]
     public GameObject activeCar;
+    private GameObject nextActiveCar;
 
     [Header("Values")]
     public int activeCarID;
+    public float rotationSpeed = 10f;
+    private bool isRotating = false;
 
     [Header("Images")]
     public Image adImage;
@@ -23,6 +29,7 @@ public class UIManager : MonoBehaviour
     public Button nextButton;
     public Button backButton;
     public Button startButton;
+    public Button rotateButton;
 
     [Header("Texts")]
     public TextMeshProUGUI carNameTMP;
@@ -40,12 +47,36 @@ public class UIManager : MonoBehaviour
 
         nextButton.onClick.AddListener(() => GetCar(true,false));
         backButton.onClick.AddListener(() => GetCar(false,false));
+        rotateButton.onClick.AddListener(RotateCar);
 
         startButton.onClick.AddListener(GetScene);
     }
 
+	private void Update()
+	{
+        if(isRotating == true)
+		{
+            activeCar.transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        }        
+    }
+
+	public void RotateCar()
+	{
+        isRotating = true;        
+	}
+
     public void GetCar(bool nextCar = true, bool isStart = false)
     {
+        isRotating = false;
+
+        if(activeCar != null)
+        activeCar.transform.DOKill();
+
+		for (int i = 0; i < cars.Count; i++)
+		{
+            cars[i].carObj.transform.DORotate(Vector3.zero, 0f);
+		}
+
         if (Equals(isStart,false))
         {
             if (nextCar == true && activeCarID != cars.Count-1)
@@ -62,6 +93,8 @@ public class UIManager : MonoBehaviour
         carNameTMP.text = cars[activeCarID].carName;       
         activeCar = cars[activeCarID].carObj;
         activeCar.gameObject.SetActive(true);
+
+        cameraController.PlayAnimation();
 
         if (activeCarID != 0)
         {          
