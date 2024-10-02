@@ -33,7 +33,7 @@ public class CarController : MonoBehaviour
 
     [Header("Indicator Selection")]
 
-    [SerializeField] Text CurrentSpeedIndýcator;
+    public Text CurrentSpeedIndýcator;
     public Transform CurrentTorkIndicator;
     [SerializeField] float IndicatorMult;
 
